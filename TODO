@@ -1,0 +1,4 @@
+- Fix getTemplateUrl() method
+- Make single stand-up meeting a StandUp object
+- Create Person class which allows to recognize people using different names on wiki as single person
+- Add data caching to avoid unnecessary HTTP requests
