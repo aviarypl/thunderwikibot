@@ -34,6 +34,7 @@ class StandUpTools {
     final static String AVIARY_PL_WIKI_URL = "http://wiki.aviary.pl"
     final static Locale AVIARY_PL_WIKI_LOCALE = new Locale("pl", "PL")
     static XPath xpath = XPathFactory.newInstance().newXPath()
+    static String yesterdayDate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime() - 1)
 
     /**
      * Checks if stand-up date comes from the future
@@ -52,7 +53,7 @@ class StandUpTools {
      * @return List of stand-up links
      */
     static List<String> getStandUpsList(URL standUpListUrl, String firstStandUpDate = null, String lastStandUpDate =
-            new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime())) {
+            yesterdayDate) {
         List<String> standUpList = []
 
         // Reading category page to get list of stand-up URLs

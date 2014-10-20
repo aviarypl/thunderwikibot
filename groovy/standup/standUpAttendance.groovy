@@ -19,6 +19,8 @@
  */
 package standup
 
+import static standup.StandUpTools.yesterdayDate
+
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 
@@ -41,7 +43,6 @@ List<String> teamFirstDay = StandUpTools.getTemplateAttendees(args[0])
 List<String> teamLastDay = StandUpTools.getTemplateAttendees()
 int teamSizeFirstDay = teamFirstDay.size()
 int teamSizeLastDay = teamLastDay.size()
-String todayDate = new SimpleDateFormat(StandUpTools.DATE_FORMAT).format(Calendar.getInstance().getTime()).toString()
 LinkedHashMap attendance = StandUpTools.countAttendance(attendees)
 Map<String, String> enoughAttendancePeople = attendance.findAll { it.value >= standUpsList.size() / 4 }
 Map<String, String> lowAttendancePeople = attendance.findAll { it.value < standUpsList.size() / 4 }
@@ -50,7 +51,7 @@ DecimalFormat percentFormat = new DecimalFormat("###%")
 
 println("\nPEOPLE")
 println("Team members (${args[0]}): " + teamFirstDay)
-println("Team members (${args.size() == 2 ? args[1] : todayDate}): " + teamLastDay)
+println("Team members (${args.size() == 2 ? args[1] : yesterdayDate}): " + teamLastDay)
 println("Attendees: " + attendance)
 println("Enough attendance: " + enoughAttendancePeople)
 println("Low attendance: " + lowAttendancePeople)
@@ -59,7 +60,7 @@ println("Zero attendance: " + zeroAttendancePeople)
 println("\nNUMBERS")
 println("Stand-up meetings: " + standUpsList.size())
 println("Team members (${args[0]}): " + teamSizeFirstDay)
-println("Team members (${args.size() == 2 ? args[1] : todayDate}): " + teamSizeLastDay)
+println("Team members (${args.size() == 2 ? args[1] : yesterdayDate}): " + teamSizeLastDay)
 println("Attendees: " + attendance.size())
 println("Enough attendance: ${enoughAttendancePeople.size()} " +
         "(~${percentFormat.format(enoughAttendancePeople.size() / teamSizeFirstDay)})")
